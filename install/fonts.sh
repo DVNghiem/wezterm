@@ -108,4 +108,4 @@ for font_name in "FiraCode Nerd Font" "JetBrainsMono Nerd Font" "Noto Color Emoj
 done
 echo
 echo -e "   ${YELLOW}Next:${NC} Open WezTerm → ${GREEN}Ctrl+Shift+R${NC} to reload config"
-echo -e "   ${YELLOW}Repo:${NC} ${GREEN}https://github.com/vannghiem848/wezterm-xinxo${NC}"
+echo -e "   ${YELLOW}Repo:${NC} ${GREEN}https://github.com/DVNghiem/wezterm${NC}"

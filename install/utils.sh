@@ -14,4 +14,4 @@ error()  { echo -e "${RED}ERROR: $1${NC}"; exit 1; }
 
 CONFIG_DIR="$HOME/.config/wezterm"
 FONT_DIR="$HOME/.local/share/fonts"
-REPO_URL="https://github.com/vannghiem848/wezterm-xinxo.git"
+REPO_URL="https://github.com/DVNghiem/wezterm.git"

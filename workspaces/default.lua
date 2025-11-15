@@ -1,11 +1,10 @@
--- ~/.config/wezterm/workspaces/default.lua
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
 return function(c)
   c.keys = c.keys or {}
 
-  -- Leader + 1,2,3,... để switch workspace
+  -- Leader + 1,2,3,...  switch workspace
   local workspace_keys = {
     { key = '1', mods = 'LEADER', action = act.SwitchToWorkspace { name = 'default' } },
     { key = '2', mods = 'LEADER', action = act.SwitchToWorkspace { name = 'dev' } },
@@ -17,7 +16,6 @@ return function(c)
     table.insert(c.keys, k)
   end
 
-  -- Tạo workspace nếu chưa tồn tại
   wezterm.on('user-var-changed', function(window, pane, name, value)
     if name == 'wezterm_gui_startup' then
       local workspaces = wezterm.gui and wezterm.gui.get_workspace_names() or {}

@@ -13,6 +13,6 @@ log "Starting FULL WezTerm Xinxo Setup..."
 success "FULL SETUP COMPLETE!"
 echo
 echo -e "${GREEN}   WORLD-CLASS WEZTERM READY"
-echo -e "   Repo: https://github.com/vannghiem848/wezterm-xinxo"
-echo -e "   X: @vannghiem848"
+echo -e "   Repo: https://github.com/DVNghiem/wezterm"
+echo -e "   X: @DVNghiem"
 echo -e "   Run: wezterm → Ctrl+Shift+R${NC}"

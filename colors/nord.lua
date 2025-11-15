@@ -32,13 +32,11 @@ local nord = {
 local function apply_nord(c, is_dark)
   local scheme = is_dark and "Nord (Dark)" or "Nord (Light)"
 
-  -- Nếu dùng built-in scheme (WezTerm có sẵn Nord)
   if wezterm.color.get_builtin_schemes()[scheme] then
     c.color_scheme = scheme
     return c
   end
 
-  -- Custom scheme nếu không có built-in
   c.colors = {
     foreground = is_dark and nord.snow_storm.nord4 or nord.polar_night.nord0,
     background = is_dark and nord.polar_night.nord0 or nord.snow_storm.nord6,

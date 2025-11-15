@@ -1,9 +1,43 @@
 -- ~/.config/wezterm/status/left.lua
 local wezterm = require 'wezterm'
 
+-- Format tab title to show only directory name or shortened path
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  local pane = tab.active_pane
+  local cwd = pane.current_working_dir
+  
+  if not cwd then
+    return tab.active_pane.title
+  end
+
+  local path = cwd.file_path or ''
+  path = path:gsub('^file://[^/]+', '')
+  path = path:gsub('%%%%(%x%x)', function(h) return string.char(tonumber(h, 16)) end)
+  
+  -- Get just the directory name
+  local dir_name = path:match('([^/]+)/?$') or path
+  
+  -- Replace home directory with ~
+  dir_name = dir_name:gsub('^' .. os.getenv('HOME'), '~')
+  
+  -- Limit length to 20 characters
+  if #dir_name > 20 then
+    dir_name = dir_name:sub(1, 17) .. '...'
+  end
+  
+  -- Add tab index
+  local title = string.format(' %d: %s ', tab.tab_index + 1, dir_name)
+  
+  return title
+end)
+
 wezterm.on('update-status', function(window, pane)
-  local cwd = pane:get_current_working_dir()
-  if not cwd then return end
+  -- Safely get current working directory with error handling
+  local success, cwd = pcall(function()
+    return pane:get_current_working_dir()
+  end)
+  
+  if not success or not cwd then return end
 
   local path = cwd.file_path or ''
   path = path:gsub('^file://[^/]+', '')
@@ -16,14 +50,14 @@ wezterm.on('update-status', function(window, pane)
 
   -- Git branch (an toàn)
   local git_branch = ''
-  local success, stdout = pcall(function()
+  local git_success, stdout = pcall(function()
     local handle = io.popen('git -C "' .. path .. '" rev-parse --abbrev-ref HEAD 2>/dev/null')
     local output = handle:read('*a')
     handle:close()
     return output
   end)
-  if success and stdout and stdout ~= '' then
-    git_branch = '  ' .. stdout:gsub('\n', '')
+  if git_success and stdout and stdout ~= '' then
+    git_branch = '  ' .. stdout:gsub('\n', '')
   end
 
   -- Status bar

@@ -1,4 +1,3 @@
--- ~/.config/wezterm/wezterm.lua
 local wezterm = require 'wezterm'
 require 'utils.hot_reload'
 
@@ -37,10 +36,10 @@ config = require 'keybinds.panes'(config)
 config = require 'keybinds.tabs'(config)
 config = require 'keybinds.misc'(config)
 
--- === THEME (HYPER - giữ nguyên) ===
+-- === THEME (HYPER) ===
 config = require 'colors.hyper'(config)
 
--- === UI TỐI ƯU ===
+-- === UI  ===
 config.inactive_pane_hsb = { saturation = 0.7, brightness = 0.8 }
 config.window_decorations = "RESIZE"
 config.native_macos_fullscreen_mode = true

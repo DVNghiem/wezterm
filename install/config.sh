@@ -1,4 +1,3 @@
-# ~/.config/wezterm/install/config.sh
 #!/bin/bash
 source "$(dirname "$0")/utils.sh"
 

@@ -91,7 +91,6 @@ return function(c)
     -- Time
     local time = wezterm.strftime '%H:%M:%S'
     
-    -- Tạo status elements
     local elements = {}
     
     -- Battery
